@@ -49,7 +49,7 @@ export const HeroSection = () => {
               className="w-5/6 md:w-1/4 font-bold"
             >
               <Link
-                href="https://github.com/JorgeCoke/next-cloudflare.git"
+                href="https://github.com/JorgeCoke/nextjs-cloudflare-auth-template"
                 target="_blank"
               >
                 Github respository

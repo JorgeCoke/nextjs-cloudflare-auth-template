@@ -5,7 +5,7 @@ import { useState } from "react";
 import { doSignUp } from "../actions";
 import { SignUpDto } from "../dtos";
 import { useAction } from "next-safe-action/hooks";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/lib/hooks/use-toast";
 
 export const SignUpForm = () => {
   const [values, setValues] = useState<Partial<SignUpDto>>();

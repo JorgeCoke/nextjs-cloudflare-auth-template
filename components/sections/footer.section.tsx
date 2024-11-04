@@ -31,7 +31,7 @@ export const Footer = () => {
           <Button asChild size="sm" variant="ghost" aria-label="View on GitHub">
             <Link
               aria-label="View on GitHub"
-              href="https://github.com/JorgeCoke/next-cloudflare.git"
+              href="https://github.com/JorgeCoke/nextjs-cloudflare-auth-template"
               target="_blank"
             >
               <Github className="size-5" />

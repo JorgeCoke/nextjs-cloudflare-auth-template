@@ -22,7 +22,9 @@
     "db:studio:prod": "cross-env $(grep -v '^#' .dev.vars | xargs) $(grep -m 1 \"^database_id=\" wrangler.toml) drizzle-kit studio",
     "db:reset:local": "wrangler d1 execute next-cloudflare-prod-db --local --file=./lib/db/reset.sql && npm run db:migrate:local",
     "db:reset:preview": "wrangler d1 execute --env preview next-cloudflare-preview-db --remote --file=./lib/db/reset.sql && npm run db:migrate:preview",
-    "db:reset:prod": "wrangler d1 execute next-cloudflare-prod-db --remote --file=./lib/db/reset.sql && npm run db:migrate:prod"
+    "db:reset:prod": "wrangler d1 execute next-cloudflare-prod-db --remote --file=./lib/db/reset.sql && npm run db:migrate:prod",
+    "npm:audit": "npx better-npm-audit audit",
+    "npm:check": "npx npm-check -u"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

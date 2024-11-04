@@ -21,13 +21,6 @@ export const doSignUp = actionClient
   .action(async ({ parsedInput: input }) => {
     const { env } = getRequestContext();
     const db = drizzle(env.DB);
-    if (input.password !== input.repeatPassword) {
-      return returnValidationErrors(SignUpDto, {
-        repeatPassword: {
-          _errors: ["Passwords do not match"],
-        },
-      });
-    }
     const [user] = await db
       .select()
       .from(usersT)
