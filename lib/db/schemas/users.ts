@@ -24,3 +24,5 @@ export const usersT = sqliteTable("users", {
     .default(sql`(unixepoch() * 1000)`)
     .$onUpdateFn(() => new Date()),
 });
+
+export type User = typeof usersT.$inferSelect;

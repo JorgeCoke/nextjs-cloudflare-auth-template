@@ -3,8 +3,11 @@
 import { ROLE } from "@/models/enums";
 import { getRequestContext } from "@cloudflare/next-on-pages";
 import { compareSync, hashSync } from "bcryptjs";
+import { drizzle } from "drizzle-orm/d1";
 import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
+import { usersT } from "./db/schemas/users";
+import { eq } from "drizzle-orm";
 
 const COOKIE_KEY = "session";
 const ONE_WEEK = 7 * 24 * 60 * 60 * 1000;
@@ -83,4 +86,21 @@ export async function getSession() {
 
 export async function removeSession() {
   (await cookies()).delete(COOKIE_KEY);
+}
+
+export async function getUser() {
+  const session = await getSession();
+  if (!session) {
+    return null;
+  }
+  const db = drizzle(getRequestContext().env.DB);
+  const [user] = await db
+    .select()
+    .from(usersT)
+    .where(eq(usersT.id, session.userId))
+    .limit(1);
+  if (!user) {
+    return null;
+  }
+  return user;
 }

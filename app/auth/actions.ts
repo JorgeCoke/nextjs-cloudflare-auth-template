@@ -9,12 +9,13 @@ import {
   hashPassword,
   removeSession,
   setSession,
-} from "@/lib/auth";
+} from "@/lib/auth.server";
 import { redirect } from "next/navigation";
 import { ROUTES } from "@/lib/routes";
 import { LogInDto, SignUpDto } from "./dtos";
+import { validatedAction } from "@/lib/actions";
 
-export const doSignUp = async (data: SignUpDto) => {
+export const doSignUp = validatedAction(SignUpDto, async (data: SignUpDto) => {
   const { env } = getRequestContext();
   const db = drizzle(env.DB);
   const input = SignUpDto.parse(data);
@@ -34,9 +35,9 @@ export const doSignUp = async (data: SignUpDto) => {
     password: await hashPassword(input.password),
   });
   return redirect(ROUTES.AUTH.LOG_IN);
-};
+});
 
-export const doLogIn = async (data: LogInDto) => {
+export const doLogIn = validatedAction(LogInDto, async (data: LogInDto) => {
   const { env } = getRequestContext();
   const db = drizzle(env.DB);
   const input = LogInDto.parse(data);
@@ -68,7 +69,7 @@ export const doLogIn = async (data: LogInDto) => {
     .where(eq(usersT.id, user.id));
 
   return redirect(ROUTES.DASHBOARD);
-};
+});
 
 export const doLogOut = async () => {
   await removeSession();

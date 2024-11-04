@@ -1,18 +1,24 @@
 "use client";
 
 import AutoForm, { AutoFormSubmit } from "@/components/ui/auto-form";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import { doSignUp } from "../actions";
 import { SignUpDto } from "../dtos";
+import { ActionState } from "@/lib/actions";
 
 export const SignUpForm = () => {
   const [values, setValues] = useState<Partial<SignUpDto>>();
+  const [state, formAction, pending] = useActionState<ActionState, FormData>(
+    doSignUp,
+    { error: "" }
+  );
+
   return (
     <AutoForm
       values={values}
       onParsedValuesChange={setValues}
       formSchema={SignUpDto}
-      onSubmit={(data) => doSignUp(data)}
+      action={formAction}
       fieldConfig={{
         email: {
           inputProps: {
@@ -34,10 +40,10 @@ export const SignUpForm = () => {
         },
       }}
     >
-      <AutoFormSubmit className="w-full">Sign Up</AutoFormSubmit>
-      {/* {actionData?.error && (
-              <p className="text-red-500">{actionData?.error}</p>
-            )} */}
+      <AutoFormSubmit disabled={pending} className="w-full">
+        Sign Up
+      </AutoFormSubmit>
+      {state?.error && <p className="text-red-500">{state?.error}</p>}
     </AutoForm>
   );
 };

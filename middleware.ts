@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getSession, removeSession, setSession } from "./lib/auth";
+import { getSession, removeSession, setSession } from "./lib/auth.server";
 import { ROUTES } from "./lib/routes";
 
 const protectedRoutes = "/dashboard";

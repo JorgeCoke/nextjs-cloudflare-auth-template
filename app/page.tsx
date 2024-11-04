@@ -1,7 +1,7 @@
 export const runtime = "edge";
 
 import { Button } from "@/components/ui/button";
-import { getSession } from "@/lib/auth";
+import { getSession } from "@/lib/auth.server";
 import { ROUTES } from "@/lib/routes";
 import Link from "next/link";
 
