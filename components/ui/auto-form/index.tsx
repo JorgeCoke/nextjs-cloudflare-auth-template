@@ -47,7 +47,6 @@ function AutoForm<SchemaType extends ZodObjectOrWrapped>({
   children,
   className,
   dependencies,
-  action,
 }: {
   formSchema: SchemaType;
   values?: Partial<z.infer<SchemaType>>;
@@ -69,7 +68,6 @@ function AutoForm<SchemaType extends ZodObjectOrWrapped>({
     | ((formState: FormState<z.infer<SchemaType>>) => React.ReactNode);
   className?: string;
   dependencies?: Dependency<z.infer<SchemaType>>[];
-  action?: string | ((formData: FormData) => void | Promise<void>) | undefined;
 }) {
   const objectFormSchema = getObjectFormSchema(formSchema);
   const defaultValues: DefaultValues<z.infer<typeof objectFormSchema>> | null =
@@ -109,14 +107,9 @@ function AutoForm<SchemaType extends ZodObjectOrWrapped>({
     <div className="w-full">
       <Form {...form}>
         <form
-          action={action}
-          onSubmit={
-            action
-              ? undefined
-              : (e) => {
-                  form.handleSubmit(onSubmit)(e);
-                }
-          }
+          onSubmit={(e) => {
+            form.handleSubmit(onSubmit)(e);
+          }}
           className={cn("space-y-5", className)}
         >
           <AutoFormObject

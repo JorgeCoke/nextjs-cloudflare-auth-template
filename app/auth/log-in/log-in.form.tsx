@@ -1,24 +1,21 @@
 "use client";
 
 import AutoForm, { AutoFormSubmit } from "@/components/ui/auto-form";
-import { useActionState, useState } from "react";
+import { useState } from "react";
 import { doLogIn } from "../actions";
 import { LogInDto } from "../dtos";
-import { ActionState } from "@/lib/actions";
+import { useAction } from "next-safe-action/hooks";
 
 export const LogInForm = () => {
   const [values, setValues] = useState<Partial<LogInDto>>();
-  const [state, formAction, pending] = useActionState<ActionState, FormData>(
-    doLogIn,
-    { error: "" }
-  );
+  const { executeAsync, result, isPending } = useAction(doLogIn);
 
   return (
     <AutoForm
       values={values}
       onParsedValuesChange={setValues}
       formSchema={LogInDto}
-      action={formAction}
+      onSubmit={executeAsync}
       fieldConfig={{
         email: {
           inputProps: {
@@ -34,10 +31,12 @@ export const LogInForm = () => {
         },
       }}
     >
-      <AutoFormSubmit disabled={pending} className="w-full">
+      <AutoFormSubmit disabled={isPending} className="w-full">
         Log In
       </AutoFormSubmit>
-      {state?.error && <p className="text-red-500">{state?.error}</p>}
+      {result.data?.error && (
+        <p className="text-red-500">{result.data?.error}</p>
+      )}
     </AutoForm>
   );
 };
