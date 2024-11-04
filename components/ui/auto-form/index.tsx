@@ -107,10 +107,9 @@ function AutoForm<SchemaType extends ZodObjectOrWrapped>({
     <div className="w-full">
       <Form {...form}>
         <form
-          method="post"
-          // onSubmit={(e) => {
-          //   form.handleSubmit(onSubmit)(e);
-          // }}
+          onSubmit={(e) => {
+            form.handleSubmit(onSubmit)(e);
+          }}
           className={cn("space-y-5", className)}
         >
           <AutoFormObject

@@ -2,27 +2,17 @@
 
 import AutoForm, { AutoFormSubmit } from "@/components/ui/auto-form";
 import { useState } from "react";
-import { z } from "zod";
-
-const SignUpDto = z.object({
-  email: z.string().email({ message: "Email is not a valid email address" }),
-  password: z
-    .string()
-    .min(8, { message: "Password must containt at least 8 characteres" }),
-  repeatPassword: z
-    .string()
-    .min(8, { message: "Password must containt at least 8 characteres" }),
-});
-type SignUpDto = z.infer<typeof SignUpDto>;
+import { doSignUp } from "../actions";
+import { SignUpDto } from "../dtos";
 
 export const SignUpForm = () => {
   const [values, setValues] = useState<Partial<SignUpDto>>();
-
   return (
     <AutoForm
       values={values}
       onParsedValuesChange={setValues}
       formSchema={SignUpDto}
+      onSubmit={(data) => doSignUp(data)}
       fieldConfig={{
         email: {
           inputProps: {

@@ -1,6 +1,9 @@
+export const runtime = "edge";
+
 import { ROUTES } from "@/lib/routes";
 import { FlameKindling } from "lucide-react";
 import { LogInForm } from "./log-in.form";
+import Link from "next/link";
 
 export default function LogInPage() {
   return (
@@ -19,9 +22,9 @@ export default function LogInPage() {
           <LogInForm />
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}
-            <a href={ROUTES.AUTH.SIGN_UP} className="underline">
+            <Link href={ROUTES.AUTH.SIGN_UP} className="underline">
               Sign Up
-            </a>
+            </Link>
           </div>
         </div>
       </div>

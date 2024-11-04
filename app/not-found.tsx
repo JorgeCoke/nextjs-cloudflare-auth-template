@@ -2,7 +2,7 @@ export const runtime = "edge";
 
 export default function NotFound() {
   return (
-    <>
+    <main className="container">
       <title>404: This page could not be found.</title>
       <div style={styles.error}>
         <div>
@@ -12,14 +12,14 @@ export default function NotFound() {
             }}
           />
           <h1 className="next-error-h1" style={styles.h1}>
-            404
+            ERROR 404
           </h1>
           <div style={styles.desc}>
             <h2 style={styles.h2}>This page could not be found.</h2>
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
 
