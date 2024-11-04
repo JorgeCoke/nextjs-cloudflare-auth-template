@@ -87,5 +87,5 @@ export const doLogIn = actionClient
 
 export const doLogOut = async () => {
   await removeSession();
-  return redirect(ROUTES.AUTH.LOG_IN);
+  return redirect(ROUTES.INDEX);
 };

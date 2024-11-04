@@ -47,7 +47,10 @@ export const SignUpForm = () => {
         },
       }}
     >
-      <AutoFormSubmit disabled={isPending} className="w-full">
+      <AutoFormSubmit
+        disabled={isPending}
+        className="w-full bg-gradient-to-r from-[#ff4eaf] to-[#c74eff]"
+      >
         Sign Up
       </AutoFormSubmit>
       {result.validationErrors?._errors && (

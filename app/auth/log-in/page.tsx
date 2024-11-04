@@ -6,8 +6,15 @@ import { LogInForm } from "./log-in.form";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { getSession } from "@/lib/auth.server";
+import { redirect } from "next/navigation";
 
-export default function LogInPage() {
+export default async function LogInPage() {
+  const session = await getSession();
+  if (session) {
+    return redirect(ROUTES.DASHBOARD);
+  }
+
   return (
     <main className="w-full h-[100vh] lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="hidden bg-primary lg:flex justify-center">
