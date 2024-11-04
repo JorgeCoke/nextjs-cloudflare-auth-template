@@ -14,6 +14,8 @@ import { redirect } from "next/navigation";
 import { ROUTES } from "@/lib/routes";
 import { LogInDto, SignUpDto } from "./dtos";
 import { actionClient } from "@/lib/safe-action";
+import { returnValidationErrors } from "next-safe-action";
+import { z } from "zod";
 
 export const doSignUp = actionClient
   .schema(SignUpDto)
@@ -21,7 +23,11 @@ export const doSignUp = actionClient
     const { env } = getRequestContext();
     const db = drizzle(env.DB);
     if (input.password !== input.repeatPassword) {
-      return { error: "Passwords does not match" };
+      return returnValidationErrors(SignUpDto, {
+        repeatPassword: {
+          _errors: ["Passwords do not match"],
+        },
+      });
     }
     const [user] = await db
       .select()
@@ -29,9 +35,9 @@ export const doSignUp = actionClient
       .limit(1)
       .where(eq(usersT.email, input.email));
     if (user) {
-      return {
-        error: "Unable to create to create user. Please try again later",
-      };
+      return returnValidationErrors(SignUpDto, {
+        _errors: ["Unable to create to create user. Please try again later"],
+      });
     }
     await db.insert(usersT).values({
       email: input.email,
@@ -51,7 +57,9 @@ export const doLogIn = actionClient
       .limit(1)
       .where(eq(usersT.email, input.email));
     if (!user || !user.enabled) {
-      return { error: "Invalid username or password" };
+      return returnValidationErrors(LogInDto, {
+        _errors: ["Invalid email or password"],
+      });
     }
     const success = await comparePasswords(input.password, user.password);
     if (!success) {
@@ -63,7 +71,9 @@ export const doLogIn = actionClient
           enabled: user.lastLogInTries < 99,
         })
         .where(eq(usersT.id, user.id));
-      return { error: "Invalid username or password" };
+      return returnValidationErrors(LogInDto, {
+        _errors: ["Invalid email or password"],
+      });
     }
     await setSession(user.id, user.role);
     // Update lastLogInAt and reset lastLogInTries

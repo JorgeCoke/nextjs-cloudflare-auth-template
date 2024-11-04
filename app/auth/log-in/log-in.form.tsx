@@ -5,10 +5,16 @@ import { useState } from "react";
 import { doLogIn } from "../actions";
 import { LogInDto } from "../dtos";
 import { useAction } from "next-safe-action/hooks";
+import { useToast } from "@/hooks/use-toast";
 
 export const LogInForm = () => {
   const [values, setValues] = useState<Partial<LogInDto>>();
-  const { executeAsync, result, isPending } = useAction(doLogIn);
+  const { toast } = useToast();
+  const { executeAsync, result, isPending } = useAction(doLogIn, {
+    onSuccess: () => {
+      toast({ title: "Welcome back!", variant: "success" });
+    },
+  });
 
   return (
     <AutoForm
@@ -34,8 +40,8 @@ export const LogInForm = () => {
       <AutoFormSubmit disabled={isPending} className="w-full">
         Log In
       </AutoFormSubmit>
-      {result.data?.error && (
-        <p className="text-red-500">{result.data?.error}</p>
+      {result.validationErrors?._errors && (
+        <p className="text-red-500">{result.validationErrors?._errors}</p>
       )}
     </AutoForm>
   );
