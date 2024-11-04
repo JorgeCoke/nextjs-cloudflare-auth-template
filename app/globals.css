@@ -86,3 +86,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Disables iOS auto zoom in Inputs */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (max-device-width: 1024px) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}

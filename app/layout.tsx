@@ -4,7 +4,6 @@ import "./globals.css";
 import { UserProvider } from "@/lib/auth.client";
 import { getUser } from "@/lib/auth.server";
 import { Toaster } from "@/components/ui/toaster";
-import { Navbar } from "@/components/layout/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 

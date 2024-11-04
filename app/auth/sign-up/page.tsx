@@ -17,9 +17,9 @@ export default async function SignUpPage() {
 
   return (
     <main className="w-full h-[100vh] lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
-      <div className="hidden bg-primary lg:flex justify-center">
-        <div className="flex flex-col gap-3 items-center justify-center font-medium text-white text-3xl">
-          <FlameKindling className="w-24 h-24" />
+      <div className="hidden bg-primary  lg:flex justify-center">
+        <div className="flex flex-col gap-3 items-center justify-center font-medium animate-text-gradient bg-gradient-to-r from-mypink via-mypurple to-mypink bg-[200%_auto] text-transparent bg-clip-text text-3xl">
+          <FlameKindling className="w-24 h-24 text-white" />
           Next-Cloudflare
         </div>
       </div>

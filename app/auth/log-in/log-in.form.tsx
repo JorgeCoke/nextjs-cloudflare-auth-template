@@ -39,7 +39,7 @@ export const LogInForm = () => {
     >
       <AutoFormSubmit
         disabled={isPending}
-        className="w-full bg-gradient-to-r from-[#ff4eaf] to-[#c74eff]"
+        className="w-full bg-gradient-to-r from-mypink to-mypurple"
       >
         Log In
       </AutoFormSubmit>

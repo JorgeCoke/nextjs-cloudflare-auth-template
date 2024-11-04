@@ -20,10 +20,10 @@ export const HeroSection = () => {
             <h1>
               Experience the
               <br />
-              <span className="inline-flex animate-text-gradient bg-gradient-to-r from-[#ff4eaf] via-[#c74eff] to-[#ff4eaf] bg-[200%_auto] text-transparent bg-clip-text">
+              <span className="inline-flex animate-text-gradient bg-gradient-to-r from-mypink via-mypurple to-mypink bg-[200%_auto] text-transparent bg-clip-text">
                 Next-Cloudflare
               </span>
-              {/* <span className="text-transparent px-2 bg-gradient-to-r from-[#ff4eaf] to-[#c74eff] bg-clip-text">
+              {/* <span className="text-transparent px-2 bg-gradient-to-r from-mypink to-mypurple bg-clip-text">
                 Next-Cloudflare
               </span> */}{" "}
               adventure
@@ -36,7 +36,7 @@ export const HeroSection = () => {
           <div className="space-y-4 md:space-y-0 md:space-x-4">
             <Button
               asChild
-              className="w-5/6 md:w-1/4 font-bold group/arrow bg-gradient-to-r from-[#ff4eaf] to-[#c74eff]"
+              className="w-5/6 md:w-1/4 font-bold group/arrow bg-gradient-to-r from-mypink to-mypurple"
             >
               <Link href={ROUTES.AUTH.LOG_IN}>
                 Log In

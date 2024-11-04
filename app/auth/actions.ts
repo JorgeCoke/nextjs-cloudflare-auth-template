@@ -15,7 +15,6 @@ import { ROUTES } from "@/lib/routes";
 import { LogInDto, SignUpDto } from "./dtos";
 import { actionClient } from "@/lib/safe-action";
 import { returnValidationErrors } from "next-safe-action";
-import { z } from "zod";
 
 export const doSignUp = actionClient
   .schema(SignUpDto)

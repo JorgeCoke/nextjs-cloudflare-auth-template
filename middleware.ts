@@ -8,17 +8,15 @@ const protectedRoutes = "/dashboard";
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isProtectedRoute = pathname.startsWith(protectedRoutes);
-  const session = await getSession();
 
-  if (!session) {
-    await removeSession();
-    if (isProtectedRoute) {
+  if (isProtectedRoute) {
+    const session = await getSession();
+    if (!session) {
+      await removeSession();
       return NextResponse.redirect(new URL(ROUTES.AUTH.LOG_IN, request.url));
+    } else {
+      await setSession(session.userId, session.role);
     }
-  }
-
-  if (session && isProtectedRoute) {
-    await setSession(session.userId, session.role);
   }
 
   return NextResponse.next();

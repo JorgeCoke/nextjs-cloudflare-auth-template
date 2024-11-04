@@ -1,5 +1,5 @@
 "use client";
-import { FlameKindling, Github, Menu } from "lucide-react";
+import { FlameKindling, Menu } from "lucide-react";
 import React from "react";
 import {
   Sheet,
@@ -171,7 +171,7 @@ export const Navbar = () => {
           <Button
             asChild
             size="sm"
-            className="bg-gradient-to-r from-[#ff4eaf] to-[#c74eff]"
+            className="bg-gradient-to-r from-mypink to-mypurple"
           >
             <Link href={ROUTES.AUTH.LOG_IN}>Access</Link>
           </Button>

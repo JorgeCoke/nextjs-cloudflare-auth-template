@@ -55,7 +55,7 @@ export const BenefitsSection = () => {
     <section id="benefits" className="container py-24 sm:py-32 ">
       <div className="grid lg:grid-cols-2 place-items-center lg:gap-24">
         <div>
-          <h2 className="text-lg mb-2 tracking-wider from-[#ff4eaf] to-[#c74eff] text-transparent bg-clip-text bg-gradient-to-r">
+          <h2 className="text-lg mb-2 tracking-wider from-mypink to-mypurple text-transparent bg-clip-text bg-gradient-to-r">
             Benefits
           </h2>
 
@@ -73,12 +73,12 @@ export const BenefitsSection = () => {
           {benefitList.map(({ icon, title }, index) => (
             <Card
               key={title}
-              className="bg-muted/30 hover:bg-background transition-all delay-75 group/number p-2 duration-200 hover:scale-105 hover:border-pink-300"
+              className="bg-muted/30 hover:bg-background transition-all delay-75 group/number p-2 duration-200 hover:scale-105 hover:border-mypink"
             >
               <CardHeader>
                 <div className="flex justify-between">
                   {icon}
-                  <span className="opacity-50 text-5xl font-medium transition-all delay-75 group-hover/number:text-muted-foreground/50 from-[#ff4eaf] to-[#c74eff] text-transparent bg-clip-text bg-gradient-to-r">
+                  <span className="opacity-50 text-5xl font-medium transition-all delay-75 group-hover/number:text-muted-foreground/50 from-mypink to-mypurple text-transparent bg-clip-text bg-gradient-to-r">
                     0{index + 1}
                   </span>
                 </div>

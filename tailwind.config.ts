@@ -28,6 +28,21 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        tahiti: {
+          light: "#67e8f9",
+          DEFAULT: "#06b6d4",
+          dark: "#0e7490",
+        },
+        mypink: {
+          light: "#ffb0db",
+          DEFAULT: "#ff4eaf",
+          dark: "#541437",
+        },
+        mypurple: {
+          light: "#e6c6f5",
+          DEFAULT: "#c74eff",
+          dark: "#411d52",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
@@ -91,11 +106,17 @@ const config: Config = {
             backgroundPosition: "200% center",
           },
         },
+        "bg-gradient": {
+          to: {
+            backgroundPosition: "200% bottom",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "text-gradient": "text-gradient 2.5s linear infinite",
+        "bg-gradient": "bg-gradient 10s ease-out infinite",
       },
     },
   },

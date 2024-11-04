@@ -1,4 +1,3 @@
-import { useUser } from "@/lib/auth.client";
 import { getSession } from "@/lib/auth.server";
 
 export const runtime = "edge";
